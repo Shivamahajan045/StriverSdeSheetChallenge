@@ -1,0 +1,43 @@
+//TC = O(n) and SC = O(n)
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function (s) {
+    map = new Map();
+    let left = 0;
+    let right = 0;
+    let len = 0;
+    let n = s.length;
+    while (right < n) {
+        if (map.has(s.charAt(right))) {
+            left = Math.max(map.get(s.charAt(right)) + 1, left);
+
+        }
+        map.set(s.charAt(right), right);
+        len = Math.max(len, right - left + 1);
+        right++;
+    }
+    return len;
+};
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        HashMap<Character, Integer> map = new HashMap<>();
+        int left = 0;
+        int right = 0;
+        int n = s.length();
+        int len = 0;
+
+        while(right < n){
+            if(map.containsKey(s.charAt(right))){
+                //update left pointer
+                left = Math.max(map.get(s.charAt(right))+1, left);
+            }
+            map.put(s.charAt(right), right);
+            len = Math.max(len, right - left + 1);
+            right++;
+        }
+        return len;
+    }
+}
